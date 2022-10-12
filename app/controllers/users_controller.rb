@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response   
     before_action :authorize
     skip_before_action :authorize, only: [:create]
     # handles signup
@@ -17,8 +17,8 @@ class UsersController < ApplicationController
 
     # get a single user
     def show 
-        user = find_params
-        render json: user, status: :ok
+        user = User.find_by(id: session[:user_id])
+        render json: user, serializer: ShowUserBlogsSerializer, status: :ok
     end
 
     # update a single user

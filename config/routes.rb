@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   # resources :users, only: [:update, :delete, :index]
 
-
   # Defines the root path route ("/")
   # root "articles#index"
 
