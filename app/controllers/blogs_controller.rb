@@ -1,7 +1,8 @@
 class BlogsController < ApplicationController
-    # rescue_from ActiveRecord::RecordNotFound, with: :blog_not_found
-    # before_action :authorize
-    # skip_before_action :authorize, only: [:index, :show]
+
+    rescue_from ActiveRecord::RecordNotFound, with: :blog_not_found
+    before_action :authorize
+    skip_before_action :authorize, only: [:index, :show]
 
     # GET blogs
     def index 

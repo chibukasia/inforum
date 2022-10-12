@@ -6,5 +6,5 @@ class User < ApplicationRecord
     validates :password, presence: true
     # associations
     has_many :blogs
-    has_many :comments
+    has_many :comments 
 end
