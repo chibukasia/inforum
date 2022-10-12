@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-    before_action :authorize
-    skip_before_action :authorize, only: [:create]
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response   
+    before_action :authorize, only: [:show]
+    # skip_before_action :authorize, only: [:create]
     # handles signup
     def create
         user = User.create!(user_params)
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     # get a single user
     def show 
-        user = find_params
+        user = User.find_by(id: session[:user_id])
         render json: user, status: :ok
     end
 
