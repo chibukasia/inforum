@@ -31,7 +31,7 @@ class BlogsController < ApplicationController
             blog.update!(blog_params)
             render json: blog, status: :accepted 
         else
-            render json: {error: "Not authorized to edit this blog"}
+            render json: {error: "Not authorized to edit this blog"}, status: :unauthorized
         end
     end 
 
@@ -44,7 +44,7 @@ class BlogsController < ApplicationController
             blog.destroy
             head :no_content
         else
-            render json: {error: "Not authorized to delete this blog"}
+            render json: {error: "Not authorized to delete this blog"}, status: :unauthorized
         end
     end 
 
