@@ -14,8 +14,8 @@ const LoginForm = () => {
       
       <form>
         <h2>Log In</h2>
-        <input type="text" placeholder="Username" required="true" /> <br></br> 
-        <input type="password" placeholder="Password" required="true" /><br></br>
+        <input type="text" placeholder="Username" required /> <br></br> 
+        <input type="password" placeholder="Password" required /><br></br>
 
         <div>
           <input className="login-btn" type="submit" value="Login" />
