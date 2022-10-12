@@ -4,7 +4,7 @@ class User < ApplicationRecord
     validates :username, uniqueness: true, presence: true
     validates :email, uniqueness: true, presence: true
     validates :password, presence: true
-    
+    # associations
     has_many :blogs
-    # has_many :comments, through: :blogs 
+    has_many :comments
 end
