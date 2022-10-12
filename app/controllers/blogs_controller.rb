@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :blog_not_found
+    before_action :authorize
+    skip_before_action :authorize, only: [index, show]
 
     # GET blogs
     def index 
@@ -15,22 +17,35 @@ class BlogsController < ApplicationController
 
     # POST blog
     def create
-        blog = Blog.create!(blog_params)
+        user = find_user
+        blog = user.blogs.create!(blog_params)
         render json: blog, status: :created
     end 
 
     # PATCH blog
     def update 
+        user = find_user
         blog = find_blog
-        blog.update!(blog_params)
-        render json: blog, status: :accepted
+        # check if blog author is the editor
+        if user.id == blog.user_id
+            blog.update!(blog_params)
+            render json: blog, status: :accepted 
+        else
+            render json: {error: "Not authorized to edit this blog"}, status: :unauthorized
+        end
     end 
 
     # DELETE blog
     def destroy 
+        user = find_user
         blog =  find_blog
-        blog.destroy
-        head :no_content
+        # Check if is author of the blog
+        if user.id == blog.user_id
+            blog.destroy
+            head :no_content
+        else
+            render json: {error: "Not authorized to delete this blog"}, status: :unauthorized
+        end
     end 
 
     # Private methods 
@@ -49,5 +64,14 @@ class BlogsController < ApplicationController
     # Blog not found response 
     def blog_not_found
         render json:  {error: "Blog not found"}, status: :not_found 
+    end 
+    # Find user using session
+    def find_user 
+        user = User.find(session[:user_id])
+    end 
+
+    # Authorize users 
+    def authorize 
+        render json: {errors: "Not authorized"}, status: :unauthorized unless session.include? :user_id
     end
 end
