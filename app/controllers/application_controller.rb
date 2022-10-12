@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies 
-
+    wrap_parameters format: []
     rescue_from ActiveRecord::RecordInvalid, with: :response_to_unprocessable_entity
 
     # Private methods 
