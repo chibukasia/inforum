@@ -44,6 +44,7 @@ form {
     padding-top: 60px;
 
 }
+
 .login-btn{
 
     width: 25em;
@@ -53,6 +54,8 @@ form {
     cursor: pointer;
     color: #FFFFFF;
     font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 input {
