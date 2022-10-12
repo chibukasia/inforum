@@ -26,9 +26,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    
 }
 
+.head{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 60px;
+
+}
 .login-btn{
 
     width: 25em;
@@ -37,6 +52,7 @@
     border-radius: 5px;
     cursor: pointer;
     color: #FFFFFF;
+    font-size: 15px;
 }
 
 input {
