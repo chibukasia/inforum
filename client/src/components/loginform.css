@@ -31,12 +31,11 @@
 
 .login-btn{
 
-    width: 30em;
+    width: 25em;
     padding: 1em;
     background: #008000;
-    border-radius: 0.50em;
+    border-radius: 5px;
     cursor: pointer;
-   
     color: #FFFFFF;
 }
 
