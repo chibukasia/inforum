@@ -33,7 +33,7 @@ class UsersController < ApplicationController
         user = find_params
         user.destroy
         head :no_content
-        session.destroy
+        session.delete :user_id
     end
 
     private 
