@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import AddBlog from './components/addblog'; 
 import SignUp from './components/signup'
 import Landing from './components/landing';
+import EditBlog from './components/editblog';
 
 function App() {
   const [blogs, setBlogs] = useState([]) 
@@ -29,6 +30,12 @@ function App() {
       }
     }); 
   }, []);
+  
+  useEffect(()=>{
+    fetch("/comments")
+    .then(res=>res.json())
+    .then(data=>setComments(data))
+  },[])
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
