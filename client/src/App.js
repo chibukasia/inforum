@@ -16,14 +16,16 @@ function App() {
     .then(res=>res.json())
     .then(data=>setBlogs(data))
   }, [])
-
   return (
     <div className='main'>
       <nav>
-        
       </nav>
       <Routes>
         <Route exact path='/login' element={<LoginForm/>}/>
+        <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search}/>}/>
+        <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs}/>}/>
+        <Route exact path='/:id' element={<Blog blogs={blogs}/>}/>
+        
       </Routes>
     </div>
   );
