@@ -41,12 +41,13 @@ function AddBlog() {
       <div>
         <h2>Share your idea</h2>
       </div>
+      
+      <form className="row g-3" id="blog-form" onSubmit={handleSubmit}>
       <div>
         {errors.map((err) => (
             <p key={err} style={{color: "red"}}>{err}</p>
         ))}
       </div>
-      <form className="row g-3" id="blog-form" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title
