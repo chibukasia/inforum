@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import "./loginform.css";
 import loginavi from "../loginavi.png";
-//import {useForm} from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -9,6 +11,7 @@ const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
+  const navigate =useNavigate()
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -21,7 +24,11 @@ const LoginForm = () => {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => console.log(user));
+        r.json().then((user) => console.log(user))
+        .then(() => navigate('/blogs'))
+
+
+
       } 
       else{
         r.json().then((err) => setErrors([err.errors]));
@@ -67,8 +74,8 @@ console.log(errors)
         }
         </div>
         <h3>Don't have an account?</h3>
-        <a href="./loginform.js">Sign Up</a>
-      </form>
+        <Link to="/signup" style={{ textDecoration: 'none', color: "green" }}>Sign up</Link>
+          </form>
     </div>
   );
 }; 
