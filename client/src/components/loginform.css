@@ -16,7 +16,7 @@
     background: #FFFFFF;
     border: 1px solid #787878;
     backdrop-filter: blur(2px);
-    border-radius: 10px;
+    border-radius: 10px; 
     background-color: white;
     width: 50%;
     height: 80%;
@@ -29,6 +29,7 @@
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 20px;
+    margin-top: 15px;
     
 }
 
@@ -44,7 +45,7 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-top: 60px;
+    padding-top: 10px;
 
 }
 /* 
@@ -86,3 +87,7 @@ input[type=submit] {
     margin-bottom: 30px;
     padding: 1em;
 }
+.error{
+    font-family: sans-serif;
+    color: rgb(199, 10, 10);
+;}
