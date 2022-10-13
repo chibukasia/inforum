@@ -23,22 +23,16 @@ const SignUp = () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          username,
-          email,
-          password,
+          username: username,
+          email: email,
+          password: password,
           password_confirmation: passwordConfirmation,
-          profile_photo: profilePhoto,
+          image_url: profilePhoto,
         }),
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then(console.log( 
-            username,
-            email,
-            password,
-            passwordConfirmation,
-            profilePhoto
-            )).then(() => navigate('/blogs'))
+          r.json().then(() => navigate('/blogs'))
         } else {
           r.json().then((err) => setErrors(err.errors))
         }
