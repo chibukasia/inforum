@@ -92,7 +92,7 @@ const SignUp = () => {
                   ))}
                 </div>
                 <div>
-                  <input 
+                <input 
                   type="submit" 
                   value={isLoading ? "Loading..." : "Sign Up"} 
                   />
