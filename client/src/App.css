@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+/* main section */ 
+.main{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home{
+  /* padding: 20px; */
+}
+ 
+.home h1, h2, h3{
+  padding: 20px;
+  text-align: center;
+}

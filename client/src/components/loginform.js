@@ -18,7 +18,7 @@ const LoginForm = () => {
         <input type="password" placeholder="Password" required /><br></br>
 
         <div>
-          <input className="login-btn" type="submit" value="Login" />
+          <input type="submit" value="Login" />
         </div>
         <h3>Don't have an account?</h3>
         <a href="./loginform.js">Sign Up</a>
