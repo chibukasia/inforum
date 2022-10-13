@@ -12,32 +12,67 @@ import Landing from './components/landing';
 function App() {
   const [blogs, setBlogs] = useState([]) 
   const [search, setSearch] = useState('')
+  const [user, setUser] = useState(null);
+
 
   useEffect(()=>{
     fetch("/blogs")
     .then(res=>res.json())
     .then(data=>setBlogs(data))
   }, [])
+
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    }); 
+  }, []);
+
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
   return (
+    <>
     <div>
       <nav>
+       
         <Link to="/" className="nav-item">Home</Link>
-        <Link to="/blogs" className="nav-item">Blogs</Link>
-        <Link to="/addblog" className="nav-item">Write</Link>
-        <Link to="/signup" className="nav-item">Sign Up</Link>
-        <Link to="/login" className="nav-item">Login</Link>
+        {user ?(
+        <>
+          <Link to="/blogs" className="nav-item">Blogs</Link>
+          <Link to="/addblog" className="nav-item">Write</Link>
+          <Link to="/" className="nav-item" onClick={handleLogoutClick}>Logout</Link>
+        </>
+        )
+        :
+        (
+          <>
+            <Link to="/signup" className="nav-item">Sign Up</Link>
+            <Link to="/login" className="nav-item">Login</Link>
+          </>
+        )
+        }
+  
       </nav>
+
     <div className='main'>
       <Routes>
-        <Route exact path="/" element={<Landing />}/>
-        <Route exact path='/login' element={<LoginForm/>}/>
+        <Route exact path='/login' element={<LoginForm onLogin={setUser}/>}/>
         <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search}/>}/>
-        <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs}/>}/>
+
+        <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs} user={user}/>}/>
         <Route exact path='/blogs/:id' element={<Blog blogs={blogs}/>}/>
         <Route exact path='/signup' element={<SignUp/>}/>
       </Routes>
     </div>
     </div>
+    </>
       
   );
 }
