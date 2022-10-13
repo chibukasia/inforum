@@ -7,6 +7,7 @@ import Blog from './components/blog';
 import { useEffect, useState } from 'react';
 import AddBlog from './components/addblog'; 
 import SignUp from './components/signup'
+import Landing from './components/landing';
 
 function App() {
   const [blogs, setBlogs] = useState([]) 
