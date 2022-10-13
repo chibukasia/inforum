@@ -20,12 +20,15 @@
     background-color: white;
     width: 50%;
     height: 80%;
-    position: relative;
+    /* position: relative; */
     border-radius: 1em;
     box-shadow: 0 0.188em 1.550em rgb(156, 156, 156);
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
     
 }
 
@@ -44,10 +47,10 @@ form {
     padding-top: 60px;
 
 }
-
+/* 
 .login-btn{
 
-    width: 25em;
+    width: 50%;
     padding: 1em;
     background: #008000;
     border-radius: 5px;
@@ -56,11 +59,11 @@ form {
     font-size: 15px;
     margin-top: 20px;
     margin-bottom: 30px;
-}
+} */
 
 input {
    
-    width: 80%;
+    width: 50%;
     padding: 1em;
     background: #FFFFFF;
     border: 1px solid #787878;
@@ -70,4 +73,16 @@ input {
 
 input:focus {
     outline-color: #008000;
+} 
+
+input[type=submit] {
+    width: 100%;
+    background: #008000;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 1em;
 }
