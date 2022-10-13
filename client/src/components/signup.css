@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.loginpage {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loginform {
+    background: #FFFFFF;
+    border: 1px solid #787878;
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    background-color: white;
+    width: 50%;
+    height: 80%;
+    /* position: relative; */
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(156, 156, 156);
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+    
+}
+
+.head{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 60px;
+
+}
+/* 
+.login-btn{
+
+    width: 50%;
+    padding: 1em;
+    background: #008000;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+} */
+
+input {
+    width: 50%;
+    padding: 1em;
+    background: #FFFFFF;
+    border: 1px solid #787878;
+    border-radius: 5px;
+    color: black;
+}
+
+input:focus {
+    outline-color: #008000;
+} 
+
+input[type=submit] {
+    width: 100%;
+    background: #008000;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 1em;
+}
+
+textarea {
+    resize: none;
+    width: 50%;
+    padding: 1em;
+    background: #FFFFFF;
+    border: 1px solid #787878;
+    border-radius: 5px;
+    color: black;
+}
+
+textarea:focus {
+    resize: none;
+    outline-color: #008000;
+  }
