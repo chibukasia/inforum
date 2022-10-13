@@ -1,0 +1,42 @@
+.landing {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+.section-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 75px;
+    border-top: 1px solid black;
+    border-top-color: black;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo {
+    padding: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.get-started {
+    margin-top: 20px;
+    width: 30%;
+}

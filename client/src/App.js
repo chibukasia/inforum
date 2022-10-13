@@ -7,6 +7,7 @@ import Blog from './components/blog';
 import { useEffect, useState } from 'react';
 import AddBlog from './components/addblog'; 
 import SignUp from './components/signup'
+import Landing from './components/landing';
 
 function App() {
   const [blogs, setBlogs] = useState([]) 
@@ -28,6 +29,7 @@ function App() {
       </nav>
     <div className='main'>
       <Routes>
+        <Route exact path="/" element={<Landing />}/>
         <Route exact path='/login' element={<LoginForm/>}/>
         <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search}/>}/>
         <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs}/>}/>
