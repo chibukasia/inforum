@@ -1,6 +1,7 @@
+
+import './App.css';
 import LoginForm from './components/loginform';
-import {Routes, Route} from "react-router-dom";
-import SignUp from './components/signup';
+import {Routes, Route, Link} from "react-router-dom";
 
 function App() {
   return (
@@ -10,7 +11,6 @@ function App() {
       </nav>
       <Routes>
         <Route exact path='/login' element={<LoginForm/>}/>
-        <Route exact path='/signup' element={<SignUp/>}/>
       </Routes>
     </div>
   );
