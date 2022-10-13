@@ -138,3 +138,25 @@ nav{
   text-decoration: none;
   font-size: 20px;
 }
+button{
+  margin-right: 20px;
+}
+.blog{
+  width: 55%;
+  margin: 10px auto;
+  background: #FFFFFF;
+  border: 1px solid #787878;
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(185, 185, 185);
+} 
+.blog-details {
+  padding: 30px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+}

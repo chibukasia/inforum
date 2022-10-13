@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
+import Blogs from "./blogs";
 
-function AddBlog() {
-  const [postData, setPoastData] = useState({
+function AddBlog({blogs, setBlogs}) {
+  const [postData, setPostData] = useState({
       title: "",
       content: "",
       likes: 0,
@@ -15,7 +16,7 @@ function AddBlog() {
       let name = e.target.name 
       let value = e.target.value
 
-      setPoastData({...postData, [name]: value })
+      setPostData({...postData, [name]: value })
   }
 
   function handleSubmit(e){
@@ -30,6 +31,7 @@ function AddBlog() {
           body: JSON.stringify(postData)
       }).then((r) => {
       if (r.ok) {
+          r.json().then(data=>setBlogs([...blogs, data ]))
         navigate("/blogs");
       } else {
         r.json().then((err) => setErrors(err.errors));

@@ -32,7 +32,7 @@ class BlogsController < ApplicationController
             blog.update!(blog_params)
             render json: blog, status: :accepted 
         else
-            render json: {error: "Not authorized to edit this blog"}, status: :unauthorized
+            render json: {errors: ["Not authorized to edit this blog"]}, status: :unauthorized
         end
     end 
 
@@ -45,7 +45,7 @@ class BlogsController < ApplicationController
             blog.destroy
             head :no_content
         else
-            render json: {error: "Not authorized to delete this blog"}, status: :unauthorized
+            render json: {errors: ["Not authorized to edit this blog"]}, status: :unauthorized
         end
     end 
 
@@ -64,7 +64,7 @@ class BlogsController < ApplicationController
 
     # Blog not found response 
     def blog_not_found
-        render json:  {error: "Blog not found"}, status: :not_found 
+        render json:  {errors: ["Blog not found"]}, status: :not_found 
     end 
     # Find user using session
     def find_user 
@@ -73,6 +73,6 @@ class BlogsController < ApplicationController
 
     # Authorize users 
     def authorize 
-        render json: {errors: "Not authorized"}, status: :unauthorized unless session.include? :user_id
+        render json: {errors:["Not authorized"]}, status: :unauthorized unless session.include? :user_id
     end
 end

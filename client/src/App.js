@@ -14,6 +14,7 @@ function App() {
   const [blogs, setBlogs] = useState([]) 
   const [search, setSearch] = useState('')
   const [user, setUser] = useState(null);
+  const [comments, setComments] = useState([]) 
 
 
   useEffect(()=>{
@@ -30,7 +31,7 @@ function App() {
       }
     }); 
   }, []);
-  
+
   useEffect(()=>{
     fetch("/comments")
     .then(res=>res.json())
@@ -75,6 +76,7 @@ function App() {
         <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs} blogs={blogs}/>}/>
         <Route exact path='/blogs/:id' element={<Blog blogs={blogs} comments={comments} user={user} setBlogs={setBlogs}/>}/>
         <Route exact path='/signup' element={<SignUp/>}/>
+        <Route exact path='/editblog/:id' element={<EditBlog blogs={blogs} setBlogs={setBlogs}/>}/>
       </Routes>
     </div>
     </div>
