@@ -1,6 +1,6 @@
 
 import './App.css';
-import LoginForm from './components/loginform';
+import LoginForm from './components/login';
 import {Routes, Route, Link} from "react-router-dom";
 import Blogs from './components/blogs';
 import Blog from './components/blog';
