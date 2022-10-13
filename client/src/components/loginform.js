@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import "./loginform.css";
 import loginavi from "../loginavi.png";
 //import {useForm} from "react-hook-form";
-import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -34,9 +33,7 @@ console.log(errors)
     <div className="loginform">
         <div className="head">
       <img src={loginavi} alt="login avi" />
-      <br></br>
       <h1>Inforum</h1>
-      <br></br>
       <p>Give your ideas a voice.</p>
       </div>
       
@@ -70,7 +67,7 @@ console.log(errors)
         }
         </div>
         <h3>Don't have an account?</h3>
-        <Link to="/signup" style={{ textDecoration: 'none', color: "green" }}>Sign up</Link>
+        <a href="./loginform.js">Sign Up</a>
       </form>
     </div>
   );
