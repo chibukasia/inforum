@@ -3,7 +3,7 @@ import "./loginform.css";
 import loginavi from "../loginavi.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({onLogin}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ const LoginForm = () => {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => console.log(user))
+        r.json().then((user) => onLogin(user))
         .then(() => navigate('/blogs'))
 
       } 

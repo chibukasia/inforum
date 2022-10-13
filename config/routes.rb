@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   # resources :users, only: [:update, :delete, :index]
+  get "/me", to: "users#show"
 
   # Defines the root path route ("/")
   # root "articles#index"
