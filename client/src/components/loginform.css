@@ -86,3 +86,7 @@ input[type=submit] {
     margin-bottom: 30px;
     padding: 1em;
 }
+.error{
+    font-family: sans-serif;
+    color: rgb(199, 10, 10);
+;}

@@ -60,6 +60,12 @@ console.log(errors)
         <div>
           <input type="submit" value={isLoading ? "Loading..." : "Login"} />
         </div>
+        <div>
+        {errors.map((err) => (
+          <p className="error" key={err}>{err}</p>
+        ))
+        }
+        </div>
         <h3>Don't have an account?</h3>
         <a href="./loginform.js">Sign Up</a>
       </form>
