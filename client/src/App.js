@@ -1,6 +1,6 @@
 
 import './App.css';
-import LoginForm from './components/loginform';
+import LoginForm from './components/login';
 import {Routes, Route, Link} from "react-router-dom";
 import React, {useState} from 'react';
 function App() {

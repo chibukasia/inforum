@@ -3,15 +3,13 @@ import "./loginform.css";
 import loginavi from "../loginavi.png";
 import { Link, useNavigate } from "react-router-dom";
 
-
-
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  const navigate =useNavigate()
+  const navigate = useNavigate()
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -26,8 +24,6 @@ const LoginForm = () => {
       if (r.ok) {
         r.json().then((user) => console.log(user))
         .then(() => navigate('/blogs'))
-
-
 
       } 
       else{
