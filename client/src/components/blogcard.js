@@ -20,7 +20,7 @@ function BlogCard({ blog }) {
       </div>
       <div className="blog-summary">
           {blog.summary}
-          <Link to={`/${blog.id}`}>Read More</Link>
+          <Link to={`/blogs/${blog.id}`}>Read More</Link>
       </div>
     </div>
   );

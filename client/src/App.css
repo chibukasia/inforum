@@ -125,4 +125,16 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+} 
+nav{
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(3, 0, 27);
+  border-bottom: #282c34, solid, 3px;
+}
+.nav-item{
+  color: #008000;
+  margin: 20px;
+  text-decoration: none;
+  font-size: 20px;
 }
