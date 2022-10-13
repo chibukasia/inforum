@@ -6,7 +6,8 @@ import Blogs from './components/blogs';
 import Blog from './components/blog';
 import { useEffect, useState } from 'react';
 import AddBlog from './components/addblog'; 
-import SignUp from './components/signup';
+import SignUp from './components/signup'
+import Landing from './components/landing';
 import EditBlog from './components/editblog';
 
 function App() {
@@ -29,22 +30,45 @@ function App() {
         r.json().then((user) => setUser(user));
       }
     }); 
-  }, []); 
+  }, []);
 
   useEffect(()=>{
     fetch("/comments")
     .then(res=>res.json())
     .then(data=>setComments(data))
   },[])
+
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
   return (
+    <>
     <div>
       <nav>
+       
         <Link to="/" className="nav-item">Home</Link>
-        <Link to="/blogs" className="nav-item">Blogs</Link>
-        <Link to="/addblog" className="nav-item">Write</Link>
-        <Link to="/signup" className="nav-item">Sign Up</Link>
-        <Link to="/login" className="nav-item">Login</Link>
+        {user ?(
+        <>
+          <Link to="/blogs" className="nav-item">Blogs</Link>
+          <Link to="/addblog" className="nav-item">Write</Link>
+          <Link to="/" className="nav-item" onClick={handleLogoutClick}>Logout</Link>
+        </>
+        )
+        :
+        (
+          <>
+            <Link to="/signup" className="nav-item">Sign Up</Link>
+            <Link to="/login" className="nav-item">Login</Link>
+          </>
+        )
+        }
+  
       </nav>
+
     <div className='main'>
       <Routes>
         <Route exact path='/login' element={<LoginForm onLogin={setUser}/>}/>
@@ -56,6 +80,7 @@ function App() {
       </Routes>
     </div>
     </div>
+    </>
       
   );
 }
