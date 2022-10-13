@@ -11,12 +11,23 @@ import SignUp from './components/signup'
 function App() {
   const [blogs, setBlogs] = useState([]) 
   const [search, setSearch] = useState('')
+  const [user, setUser] = useState(null);
+
 
   useEffect(()=>{
     fetch("/blogs")
     .then(res=>res.json())
     .then(data=>setBlogs(data))
   }, [])
+
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    }); 
+  }, []);
   return (
     <div>
       <nav>
@@ -28,8 +39,9 @@ function App() {
       </nav>
     <div className='main'>
       <Routes>
-        <Route exact path='/login' element={<LoginForm/>}/>
+        <Route exact path='/login' element={<LoginForm onLogin={setUser}/>}/>
         <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search}/>}/>
+
         <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs}/>}/>
         <Route exact path='/blogs/:id' element={<Blog blogs={blogs}/>}/>
         <Route exact path='/signup' element={<SignUp/>}/>
