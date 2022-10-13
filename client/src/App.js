@@ -6,12 +6,14 @@ import Blogs from './components/blogs';
 import Blog from './components/blog';
 import { useEffect, useState } from 'react';
 import AddBlog from './components/addblog'; 
-import SignUp from './components/signup'
+import SignUp from './components/signup';
+import EditBlog from './components/editblog';
 
 function App() {
   const [blogs, setBlogs] = useState([]) 
   const [search, setSearch] = useState('')
   const [user, setUser] = useState(null);
+  const [comments, setComments] = useState([]) 
 
 
   useEffect(()=>{
@@ -27,7 +29,13 @@ function App() {
         r.json().then((user) => setUser(user));
       }
     }); 
-  }, []);
+  }, []); 
+
+  useEffect(()=>{
+    fetch("/comments")
+    .then(res=>res.json())
+    .then(data=>setComments(data))
+  },[])
   return (
     <div>
       <nav>
@@ -40,11 +48,11 @@ function App() {
     <div className='main'>
       <Routes>
         <Route exact path='/login' element={<LoginForm onLogin={setUser}/>}/>
-        <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search}/>}/>
-
-        <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs}/>}/>
-        <Route exact path='/blogs/:id' element={<Blog blogs={blogs}/>}/>
+        <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search} user={user}/>}/>
+        <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs} blogs={blogs}/>}/>
+        <Route exact path='/blogs/:id' element={<Blog blogs={blogs} comments={comments} user={user} setBlogs={setBlogs}/>}/>
         <Route exact path='/signup' element={<SignUp/>}/>
+        <Route exact path='/editblog/:id' element={<EditBlog blogs={blogs} setBlogs={setBlogs}/>}/>
       </Routes>
     </div>
     </div>
