@@ -19,7 +19,7 @@ function Blog({blogs, comments, user}){
 
     return(
         <div className="blog">
-            <div className="blog-details">
+            {/* <div className="blog-details">
                 <h2>{blog.title}</h2>
                 <h4>Author: {blog.user.username}</h4>
                 <p>Written at: {new Date(blog.created_at).toLocaleString()}</p>
@@ -27,7 +27,7 @@ function Blog({blogs, comments, user}){
                 <p>{blog.content}</p>
                 <h4>Comments</h4> 
                 {comms}
-            </div>
+            </div> */}
             
         </div>
     )

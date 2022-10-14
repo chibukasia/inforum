@@ -70,11 +70,12 @@ function App() {
 
     <div className='main'>
       <Routes>
+        <Route exact path='/' element={<Landing />}/>
         <Route exact path='/login' element={<LoginForm onLogin={setUser}/>}/>
         <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search} user={user}/>}/>
         <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs} blogs={blogs}/>}/>
         <Route exact path='/blogs/:id' element={<Blog blogs={blogs} comments={comments} user={user} setBlogs={setBlogs}/>}/>
-        <Route exact path='/signup' element={<SignUp/>}/>
+        <Route exact path='/signup' element={<SignUp onLogin={setUser}/>}/>
         <Route exact path='/editblog/:id' element={<EditBlog blogs={blogs} setBlogs={setBlogs}/>}/>
       </Routes>
     </div>

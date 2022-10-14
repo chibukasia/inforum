@@ -3,7 +3,7 @@ import "./signup.css"
 import loginavi from "../loginavi.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = ({onLogin}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
@@ -32,7 +32,10 @@ const SignUp = () => {
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then(() => navigate('/blogs'))
+          r.json().then((user) =>{
+            onLogin(user)
+            navigate('/blogs')
+          } )
         } else {
           r.json().then((err) => setErrors(err.errors))
         }
