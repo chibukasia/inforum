@@ -4,7 +4,7 @@ import Search from "./search";
 
 function Blogs({blogs, search, setSearch, user, setBlogs}){
 
-    const filteredBlogs = blogs.filter(blog=>blog.title.toLowerCase().includes(search.toLowerCase()))
+    const filteredBlogs = blogs.filter(blog=>blog.title.toLowerCase().includes(search.toLowerCase()) || blog.user.username.toLowerCase().includes(search.toLowerCase()))
     const blogsDisplay = filteredBlogs.map(blog=>{
         return <BlogCard key={blog.id} blog= {blog} user={user} blogs={blogs} setBlogs={setBlogs}/>
     })

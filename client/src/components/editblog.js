@@ -102,7 +102,7 @@ function EditBlog({blogs, setBlogs}){
             onChange={handleChange}
           ></textarea>
         </div>
-        <input type={'submit'} value="Publish"/>
+        <input type={'submit'} value="Update"/>
       </form>
     </div>
     )
