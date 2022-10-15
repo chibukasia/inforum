@@ -1,66 +1,102 @@
-import React, {useState} from "react";
-import {useParams, useNavigate} from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-function EditBlog({blogs, setBlogs}){
-    const [errors, setErrors] = useState([]);
-    const params = useParams()
-    const navigate = useNavigate()
-    const blog = blogs.find(blogy=>blogy.id == params.id)
-    const [updateData, setUpdateData] = useState({
-        title: blog.title,
-        minutes_to_read: blog.minutes_to_read,
-        content: blog.content
+function EditBlog({ blogs, setBlogs }) {
+  const [errors, setErrors] = useState([]);
+  const params = useParams();
+  const navigate = useNavigate();
+  // const blog = blogs.find(blogy=>blogy.id == params.id)
+  const [blog, setBlog] = useState({
+    id: 0,
+    title: "",
+    minutes_to_read: 0,
+    likes: 0,
+    content: "",
+    created_at: "",
+    comments: [],
+    user: {
+      id: 0,
+      username: "",
+      image_url: "",
+      email: "",
+    },
+  });
+
+  useEffect(() => {
+    fetch(`/blogs/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data)
+        setBlog(data)
+      }
+        );
+  }, [params.id]);
+
+  const [updateData, setUpdateData] = useState({
+    title: blog.title,
+    minutes_to_read: blog.minutes_to_read,
+    content: blog.content,
+  });
+
+  useEffect(()=>{
+    setUpdateData({
+      title: blog.title,
+    minutes_to_read: blog.minutes_to_read,
+    content: blog.content,
     })
+  },[blog])
 
-    function handleChange(e){
-        let name = e.target.name 
-        let value = e.target.value 
+  // console.log(updateData)
+  
 
-        setUpdateData({[name]: value})
-    }
+  function handleChange(e) {
+    let name = e.target.name;
+    let value = e.target.value;
 
+    setUpdateData({ [name]: value });
+  }
 
-    function handleSubmit(e){
-        e.preventDefault()
-        fetch(`/blogs/${blog.id}`,{
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updateData)
-        })
-        .then(res=>{
-            if(res.ok){
-                res.json().then(data=>{
-                    const updatedBlogs = blogs.map(item=>{
-                        if (item.id == data.id){
-                            return data
-                        }else{
-                            return item
-                        }
-                    }) 
-                    
-                    setBlogs(updatedBlogs)
-                    navigate('/blogs')
-                    
-                })
-            }else{
-                res.json().then(err=>setErrors(err.errors))
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch(`/blogs/${blog.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateData),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          const updatedBlogs = blogs.map((item) => {
+            if (item.id == data.id) {
+              return data;
+            } else {
+              return item;
             }
-        })
-    }
-    return(
-        <div className="form-div">
+          });
+
+          setBlogs(updatedBlogs);
+          navigate("/blogs");
+        });
+      } else {
+        res.json().then((err) => setErrors(err.errors));
+      }
+    });
+  }
+  return (
+    <div className="form-div">
       <div>
         <h2>Edit your blog</h2>
       </div>
-      
+
       <form className="row g-3" id="blog-form" onSubmit={handleSubmit}>
-      <div>
-        {errors.map((err) => (
-            <p key={err} style={{color: "red"}}>{err}</p>
-        ))}
-      </div>
+        <div>
+          {errors.map((err) => (
+            <p key={err} style={{ color: "red" }}>
+              {err}
+            </p>
+          ))}
+        </div>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title
@@ -102,10 +138,10 @@ function EditBlog({blogs, setBlogs}){
             onChange={handleChange}
           ></textarea>
         </div>
-        <input type={'submit'} value="Update"/>
+        <input type={"submit"} value="Update" />
       </form>
     </div>
-    )
+  );
 }
 
-export default EditBlog
+export default EditBlog;
