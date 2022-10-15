@@ -36,8 +36,8 @@ function BlogCard({ blog, user, blogs, setBlogs }) {
         </div>
       </div>
       <div className="blog-summary">
-          {blog.content}
-          {/* <Link to={`/blogs/${blog.id}`}>Read More</Link> */}
+          {blog.summary}
+          <Link to={`/blogs/${blog.id}`}>Read More</Link>
       </div>
       <div>
         {user.id ==blog.user.id ? <Link to={`/editblog/${blog.id}`}><button className="btn btn-primary" type="button">Edit</button></Link> : null  }
