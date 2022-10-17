@@ -20,14 +20,14 @@ class CommentsController < ApplicationController
             comment.destroy
             head :no_content
         else
-            render json: {error: "Unauthorized user"}, status: :unauthorized
+            render json: {errors: ["Unauthorized user"]}, status: :unauthorized
         end
     end
 
     # Private 
     private 
     def authorize
-        render json: {error: "login or sign up to comment"}, status: :unauthorized unless session.include? :user_id
+        render json: {errors: ["login or sign up to comment"]}, status: :unauthorized unless session.include? :user_id
     end
 
     def comment_params

@@ -13,12 +13,13 @@ function App() {
   const [blogs, setBlogs] = useState([]) 
   const [search, setSearch] = useState('')
   const [user, setUser] = useState(null);
+  const [comments, setComments] = useState([]) 
 
   useEffect(()=>{
     fetch("/blogs")
     .then(res=>res.json())
     .then(data=>setBlogs(data))
-  }, [])
+  }, [comments])
 
   useEffect(() => {
     // auto-login
@@ -42,9 +43,10 @@ function App() {
       <nav>
        
         <Link to="/" className="nav-item">Home</Link>
+        <Link to="/blogs" className="nav-item">Blogs</Link>
         {user ?(
         <>
-          <Link to="/blogs" className="nav-item">Blogs</Link>
+          
           <Link to="/addblog" className="nav-item">Write</Link>
           <Link to="/" className="nav-item" onClick={handleLogoutClick}>Logout</Link>
         </>
@@ -66,7 +68,7 @@ function App() {
         <Route exact path='/login' element={<LoginForm onLogin={setUser}/>}/>
         <Route exact path='/blogs' element={<Blogs blogs={blogs} setSearch={setSearch} search={search} user={user}/>}/>
         <Route exact path='/addblog' element={<AddBlog setBlogs={setBlogs} blogs={blogs}/>}/>
-        <Route exact path='/blogs/:id' element={<Blog blogs={blogs} user={user} setBlogs={setBlogs}/>}/>
+        <Route exact path='/blogs/:id' element={<Blog blogs={blogs} user={user} setBlogs={setBlogs} comments={comments} setComments={setComments}/>}/>
         <Route exact path='/signup' element={<SignUp onLogin={setUser}/>}/>
         <Route exact path='/editblog/:id' element={<EditBlog blogs={blogs} setBlogs={setBlogs}/>}/>
       </Routes>

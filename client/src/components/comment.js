@@ -2,8 +2,8 @@ import React from "react";
 
 function Comment({comment}){
     return(
-        <div>
-            <p>{comment.user.username}</p>
+        <div className="comment">
+            <h4>{comment.user.username}</h4>
             <p>{comment.comment}</p>
         </div>
     )

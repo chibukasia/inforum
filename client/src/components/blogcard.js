@@ -40,8 +40,8 @@ function BlogCard({ blog, user, blogs, setBlogs }) {
           <Link to={`/blogs/${blog.id}`}>Read More</Link>
       </div>
       <div>
-        {user.id ==blog.user.id ? <Link to={`/editblog/${blog.id}`}><button className="btn btn-primary" type="button">Edit</button></Link> : null  }
-        {user.id ==blog.user.id ? <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button> : null }
+        {user && user.id ==blog.user.id ? <Link to={`/editblog/${blog.id}`}><button className="btn btn-primary" type="button">Edit</button></Link> : null  }
+        {user && user.id ==blog.user.id ? <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button> : null }
         
         
       </div>

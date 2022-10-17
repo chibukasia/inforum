@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {useParams} from "react-router-dom"
+import AddComment from "./addcomment";
 import Comment from "./comment";
 
 
-function Blog({blogs, user}){
-
-    const [comments, setComments] = useState([]) 
+function Blog({blogs, user, comments, setComments}){
 
     const [blog, setBlog] = useState({
         id: 0,
@@ -50,8 +49,10 @@ function Blog({blogs, user}){
                 
                 <p>{blog.minutes_to_read} Miuntes read</p>
                 <p>{blog.content}</p>
+                <p>{blog.likes} Likes</p>
                 <h4>Comments</h4> 
                 {blogComments}
+                <AddComment blogId = {params.id} comments={comments} setComments={setComments} user={user}/>
             </div>
             
         </div>

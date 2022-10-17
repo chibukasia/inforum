@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {useNavigate} from "react-router-dom"
 import Blogs from "./blogs";
 
@@ -19,9 +19,9 @@ function AddBlog({blogs, setBlogs}) {
       setPostData({...postData, [name]: value })
   }
 
+  const formReset = useRef()
   function handleSubmit(e){
       e.preventDefault()
-      console.log(postData) 
 
       fetch("/blogs",{
           method: "POST",
@@ -37,6 +37,7 @@ function AddBlog({blogs, setBlogs}) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+    formReset.current.reset()
   }
   return (
     <div className="form-div">
@@ -44,7 +45,7 @@ function AddBlog({blogs, setBlogs}) {
         <h2>Share your idea</h2>
       </div>
       
-      <form className="row g-3" id="blog-form" onSubmit={handleSubmit}>
+      <form className="row g-3" id="blog-form" onSubmit={handleSubmit} ref={formReset}>
       <div>
         {errors.map((err) => (
             <p key={err} style={{color: "red"}}>{err}</p>
